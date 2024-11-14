@@ -45,17 +45,17 @@ public class RecordFactory {
 
 	private MedicalRecord inputVIPRecord(String recordCode) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Mã bệnh nhân (BN-XXX): ");
+		System.out.print("Mã bệnh nhân (BN-XXX): ");
 		String patientCode = input.nextLine();
-		System.out.println("Tên bệnh nhân: ");
+		System.out.print("Tên bệnh nhân: ");
 		String patientName = input.nextLine();
-		System.out.println("Ngày vào viện (dd/MM/yyyy): ");
+		System.out.print("Ngày vào viện (dd/MM/yyyy): ");
 		String admissionDate = input.nextLine();
-		System.out.println("Ngày ra viện (dd/MM/yyyy): ");
+		System.out.print("Ngày ra viện (dd/MM/yyyy): ");
 		String dischargeDate = input.nextLine();
-		System.out.println("Lý do nhập viện: ");
+		System.out.print("Lý do nhập viện: ");
 		String admissionReason = input.nextLine();
-		System.out.println("Loại VIP (VIP I/VIP II/VIP III: ");
+		System.out.print("Loại VIP (VIP I/VIP II/VIP III: ");
 		String VIPType = input.nextLine();
 
 		return new VIPMedicalRecord(recordCode, patientCode, patientName, admissionDate, dischargeDate,
