@@ -25,6 +25,10 @@ public abstract class MedicalRecord {
 		return id;
 	}
 
+	public static void setCount(int count) {
+		MedicalRecord.count = count;
+	}
+
 	public String getRecordCode() {
 		return recordCode;
 	}

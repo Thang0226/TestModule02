@@ -55,7 +55,7 @@ public class RecordFactory {
 		String dischargeDate = input.nextLine();
 		System.out.print("Lý do nhập viện: ");
 		String admissionReason = input.nextLine();
-		System.out.print("Loại VIP (VIP I/VIP II/VIP III: ");
+		System.out.print("Loại VIP (VIP I/VIP II/VIP III): ");
 		String VIPType = input.nextLine();
 
 		return new VIPMedicalRecord(recordCode, patientCode, patientName, admissionDate, dischargeDate,

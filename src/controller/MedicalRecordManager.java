@@ -178,6 +178,8 @@ public class MedicalRecordManager {
 					}
 				}
 				saveRecords();
+				records.clear();
+				MedicalRecord.setCount(0);
 				loadRecords();
 				displayRecords();
 			}
@@ -198,6 +200,6 @@ public class MedicalRecordManager {
 	}
 
 	private boolean validateRecord(MedicalRecord record) {
-		return true;
+		return (new ValidateRecord()).validate(record);
 	}
 }
