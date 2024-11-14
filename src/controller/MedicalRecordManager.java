@@ -23,6 +23,7 @@ public class MedicalRecordManager {
 		this.filePath = filePath;
 		this.records = new ArrayList<>();
 		loadRecords();
+		saveRecords();
 	}
 
 	public String getFilePath() {
@@ -182,6 +183,7 @@ public class MedicalRecordManager {
 				MedicalRecord.setCount(0);
 				loadRecords();
 				displayRecords();
+				saveRecords();
 			}
 		}
 	}
