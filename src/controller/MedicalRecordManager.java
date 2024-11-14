@@ -67,7 +67,7 @@ public class MedicalRecordManager {
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(getFilePath());
-			fileWriter.append(FILE_HEADER);
+			fileWriter.write(FILE_HEADER);
 			fileWriter.append(NEW_LINE_SEPARATOR);
 			for (MedicalRecord record : records) {
 				fileWriter.append(String.valueOf(record.getId()));
@@ -79,11 +79,11 @@ public class MedicalRecordManager {
 				fileWriter.append(record.getPatientName());
 				fileWriter.append(DELIMITER);
 				fileWriter.append(record.getAdmissionDate());
-				fileWriter.append(NEW_LINE_SEPARATOR);
+				fileWriter.append(DELIMITER);
 				fileWriter.append(record.getDischargeDate());
-				fileWriter.append(NEW_LINE_SEPARATOR);
+				fileWriter.append(DELIMITER);
 				fileWriter.append(record.getAdmissionReason());
-				fileWriter.append(NEW_LINE_SEPARATOR);
+				fileWriter.append(DELIMITER);
 				if (record instanceof VIPMedicalRecord) {
 					fileWriter.append(((VIPMedicalRecord) record).getVIPType());
 				} else {
@@ -115,9 +115,11 @@ public class MedicalRecordManager {
 			RecordFactory factory = RecordFactory.getInstance();
 			MedicalRecord newRecord = factory.getMedicalRecord(recordType, recordCode);
 			if (newRecord != null) {
-				add(newRecord);
-				saveRecords();
-				return true;
+				if (validateRecord(newRecord)) {
+					add(newRecord);
+					saveRecords();
+					return true;
+				}
 			}
 			return false;
 
@@ -193,5 +195,9 @@ public class MedicalRecordManager {
 			System.out.print("Lý do nhập viện: " + record.getAdmissionReason() + "\t");
 			System.out.println();
 		}
+	}
+
+	private boolean validateRecord(MedicalRecord record) {
+		return true;
 	}
 }
