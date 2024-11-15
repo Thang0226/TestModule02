@@ -116,12 +116,12 @@ public class MedicalRecordManager {
 			RecordFactory factory = RecordFactory.getInstance();
 			MedicalRecord newRecord = factory.getMedicalRecord(recordType, recordCode);
 			if (newRecord != null) {
-				if (validateRecord(newRecord)) {
-					add(newRecord);
-					saveRecords();
-					return true;
-				}
+				add(newRecord);
+				saveRecords();
+				return true;
 			}
+			MedicalRecord.setCount(MedicalRecord.getCount() - 1);
+			System.out.println("Dữ liệu không hợp lệ!");
 			return false;
 
 		} catch (DuplicateMedicalRecordException e) {
@@ -150,15 +150,20 @@ public class MedicalRecordManager {
 		return false;
 	}
 
-	private boolean add(MedicalRecord record) {
-		return records.add(record);
+	private RecordType inputRecordType() {
+		try {
+			System.out.print("Nhập loại bệnh án (Regular/VIP): ");
+			String type = (new Scanner(System.in)).nextLine();
+			type = type.toUpperCase();
+			return RecordType.valueOf(type);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Loại bệnh án phải là Regular hoặc VIP");
+		}
+		return null;
 	}
 
-	private RecordType inputRecordType() {
-		System.out.print("Nhập loại bệnh án (REGULAR/VIP): ");
-		String type = (new Scanner(System.in)).nextLine();
-		type = type.toUpperCase();
-		return RecordType.valueOf(type);
+	private boolean add(MedicalRecord record) {
+		return records.add(record);
 	}
 
 	public void deleteRecord() {
@@ -199,9 +204,5 @@ public class MedicalRecordManager {
 			System.out.print("Lý do nhập viện: " + record.getAdmissionReason() + "\t");
 			System.out.println();
 		}
-	}
-
-	private boolean validateRecord(MedicalRecord record) {
-		return (new ValidateRecord()).validate(record);
 	}
 }

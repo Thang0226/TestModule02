@@ -1,15 +1,13 @@
 package model;
 
-import java.time.LocalDate;
-
 public abstract class MedicalRecord {
 	private static int count = 0;
-	private int id;
+	private final int id;
 	private String recordCode;
 	private String patientCode;
 	private String patientName;
-	private LocalDate admissionDate;
-	private LocalDate dischargeDate;
+	private String admissionDate;
+	private String dischargeDate;
 	private String admissionReason;
 
 	public MedicalRecord(String recordCode, String patientCode, String patientName, String admissionDate,
@@ -18,13 +16,17 @@ public abstract class MedicalRecord {
 		this.recordCode = recordCode;
 		this.patientCode = patientCode;
 		this.patientName = patientName;
-		this.admissionDate = createLocalDate(admissionDate);
-		this.dischargeDate = createLocalDate(dischargeDate);
+		this.admissionDate = admissionDate;
+		this.dischargeDate = dischargeDate;
 		this.admissionReason = admissionReason;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public static int getCount() {
+		return count;
 	}
 
 	public static void setCount(int count) {
@@ -56,31 +58,11 @@ public abstract class MedicalRecord {
 	}
 
 	public String getAdmissionDate() {
-		return changeDateFormat(this.admissionDate);
-	}
-
-	private String changeDateFormat(LocalDate date) {
-		String rawString = date.toString();    // yyyy-MM-dd
-		String[] strArray = rawString.split("-");
-		return strArray[2] + "/" + strArray[1] + "/" + strArray[0];
-	}
-
-	public void setAdmissionDate(String admissionDate) {
-		this.admissionDate = createLocalDate(admissionDate);
-	}
-
-	private LocalDate createLocalDate(String date) {
-		String[] dateArray = date.split("/");
-		return LocalDate.of(Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]),
-				Integer.parseInt(dateArray[0]));
+		return this.admissionDate;
 	}
 
 	public String getDischargeDate() {
-		return changeDateFormat(this.dischargeDate);
-	}
-
-	public void setDischargeDate(String dischargeDate) {
-		this.dischargeDate = createLocalDate(dischargeDate);
+		return this.dischargeDate;
 	}
 
 	public String getAdmissionReason() {
