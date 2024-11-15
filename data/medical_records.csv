@@ -1,3 +1,4 @@
 Số thứ tự, Mã bệnh án, Mã bệnh nhân, Tên bệnh nhân, Ngày vào viện, Ngày ra viện, Lý do nhập viện, Loại VIP/Viện phí
-1, BA-123, BN-123, Thang, 12/12/2000, 14/12/2000, Om, 2000000
-2, BA-002, BN-002, Tri, 12/01/2000, 12/12/2000, uit, 2000000
+1, BA-002, BN-002, Tri, 12/01/2000, 12/12/2000, uit, 2000000
+2, BA-003, BN-003, Dung, 01/01/2020, 10/10/2020, sot xuat huyet, VIP I
+3, BA-001, BN-111, Thang, 12/12/2022, 15/12/2022, Cam cum, 100000
