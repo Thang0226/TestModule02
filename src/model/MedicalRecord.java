@@ -1,13 +1,15 @@
 package model;
 
+import java.time.LocalDate;
+
 public abstract class MedicalRecord {
 	private static int count = 0;
 	private int id;
 	private String recordCode;
 	private String patientCode;
 	private String patientName;
-	private String admissionDate;
-	private String dischargeDate;
+	private LocalDate admissionDate;
+	private LocalDate dischargeDate;
 	private String admissionReason;
 
 	public MedicalRecord(String recordCode, String patientCode, String patientName, String admissionDate,
@@ -16,8 +18,8 @@ public abstract class MedicalRecord {
 		this.recordCode = recordCode;
 		this.patientCode = patientCode;
 		this.patientName = patientName;
-		this.admissionDate = admissionDate;
-		this.dischargeDate = dischargeDate;
+		this.admissionDate = createLocalDate(admissionDate);
+		this.dischargeDate = createLocalDate(dischargeDate);
 		this.admissionReason = admissionReason;
 	}
 
@@ -54,19 +56,31 @@ public abstract class MedicalRecord {
 	}
 
 	public String getAdmissionDate() {
-		return admissionDate;
+		return changeDateFormat(this.admissionDate);
+	}
+
+	private String changeDateFormat(LocalDate date) {
+		String rawString = date.toString();    // yyyy-MM-dd
+		String[] strArray = rawString.split("-");
+		return strArray[2] + "/" + strArray[1] + "/" + strArray[0];
 	}
 
 	public void setAdmissionDate(String admissionDate) {
-		this.admissionDate = admissionDate;
+		this.admissionDate = createLocalDate(admissionDate);
+	}
+
+	private LocalDate createLocalDate(String date) {
+		String[] dateArray = date.split("/");
+		return LocalDate.of(Integer.parseInt(dateArray[2]), Integer.parseInt(dateArray[1]),
+				Integer.parseInt(dateArray[0]));
 	}
 
 	public String getDischargeDate() {
-		return dischargeDate;
+		return changeDateFormat(this.dischargeDate);
 	}
 
 	public void setDischargeDate(String dischargeDate) {
-		this.dischargeDate = dischargeDate;
+		this.dischargeDate = createLocalDate(dischargeDate);
 	}
 
 	public String getAdmissionReason() {
